@@ -60,6 +60,11 @@ android {
         targetCompatibility 1.8
         sourceCompatibility 1.8
     }
+    tasks.withType(Test) {
+        testLogging {
+            events "started", "passed", "skipped", "failed"
+        }
+    }
 }
 
 dependencies {

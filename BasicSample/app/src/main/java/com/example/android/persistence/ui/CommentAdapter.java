@@ -24,12 +24,16 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.example.android.persistence.databinding.CommentItemBinding;
 import com.example.android.persistence.db.entity.CommentEntity;
 import com.example.android.persistence.R;
+import com.example.android.persistence.model.Comment;
+
+import java.util.Date;
 
 public class CommentAdapter extends ListAdapter<CommentEntity, CommentAdapter.CommentViewHolder> {
 
@@ -69,6 +73,12 @@ public class CommentAdapter extends ListAdapter<CommentEntity, CommentAdapter.Co
     @Override
     public void onBindViewHolder(@NonNull CommentViewHolder holder, int position) {
         holder.binding.setComment(getItem(position));
+        holder.binding.setCallback(new CommentClickCallback() {
+            @Override
+            public void onClick(Comment comment) {
+                Log.i(CommentAdapter.class.getSimpleName(), "java.util.date: " + System.currentTimeMillis());
+            }
+        });
         holder.binding.executePendingBindings();
     }
 
