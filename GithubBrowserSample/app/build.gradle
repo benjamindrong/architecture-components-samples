@@ -63,6 +63,12 @@ android {
     lintOptions {
         lintConfig rootProject.file('lint.xml')
     }
+    // Test Logging
+    tasks.withType(Test) {
+        testLogging {
+            events "started", "passed", "skipped", "failed"
+        }
+    }
 }
 
 jacoco {
